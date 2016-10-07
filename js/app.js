@@ -17,6 +17,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x+=this.speed *dt;
+    if(this.x>505){
+      this.x=0;
+   }
+
 
 };
 
@@ -34,6 +39,7 @@ var Player = function(x,y,speed){
     this.sprite="images/char-boy.png";
 }
 Player.prototype.update=function(dt){
+
 
 };
 Player.prototype.render = function() {
@@ -54,7 +60,6 @@ Player.prototype.handleInput = function(keyCodes){
    }
 }
 
-
 // This class requires an update(), render() and
 // a handleInput() method.
 
@@ -69,9 +74,12 @@ Player.prototype.handleInput = function(keyCodes){
 
 
 
-
  var player =new Player(200,383,50);
  var allEnemies=[];
+ var enemy = new Enemy(0, 220 , Math.random() * 256);
+ allEnemies.push(enemy);
+console.log(enemy);
+
 
 
 
