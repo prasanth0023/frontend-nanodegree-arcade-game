@@ -39,7 +39,20 @@ Player.prototype.update=function(dt){
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
+Player.prototype.handleInput = function(keyCodes){
+   if (keyCodes==='up'){
+       this.y-=80;
+   }
+   else if (keyCodes==='down') {
+      this.y+=80;
+   }
+   else if (keyCodes==='left') {
+      this.x-=89;
+   }
+   else if (keyCodes==='right') {
+      this.x+=89;
+   }
+}
 
 
 // This class requires an update(), render() and
@@ -50,8 +63,17 @@ Player.prototype.render = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+
+
+
+
+
+
+
  var player =new Player(200,383,50);
  var allEnemies=[];
+
+
 
 
 
