@@ -45,6 +45,15 @@ Player.prototype.update=function(dt){
         console.log('you made it!');
      }
 
+     if (player.x > 402.5) {
+         player.x = 402.5;
+     }
+if (player.x<1){
+   player.x=1;
+}
+if(player.y>400){
+   player.y=400;
+}
 
 };
 Player.prototype.render = function() {
@@ -62,6 +71,7 @@ Player.prototype.handleInput = function(keyCodes){
    else if (keyCodes==='left') {
       this.x-=89;
    }
+
    else if (keyCodes==='right') {
       this.x+=89;
    }
@@ -85,9 +95,12 @@ Player.prototype.handleInput = function(keyCodes){
 
  var player =new Player(200,383,50);
  var allEnemies=[];
- var enemy = new Enemy(0, 220 , Math.random() * 256);
- allEnemies.push(enemy);
-console.log(enemy);
+
+ allEnemies.push(new Enemy(0, 220 , Math.random() * 256));
+ allEnemies.push(new Enemy(0, 50,Math.random() * 256));
+ allEnemies.push(new Enemy(0, 140,Math.random() * 256));
+ allEnemies.push(new Enemy(0, 230,Math.random() * 256));
+ 
 
 
 
