@@ -39,6 +39,11 @@ var Player = function(x,y,speed){
     this.sprite="images/char-boy.png";
 }
 Player.prototype.update=function(dt){
+   if (player.y <= 40) {
+        player.x = 202.5;
+        player.y = 383;
+        console.log('you made it!');
+     }
 
 
 };
@@ -46,8 +51,10 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 Player.prototype.handleInput = function(keyCodes){
-   if (keyCodes==='up'){
+
+     if (keyCodes==='up'){
        this.y-=80;
+
    }
    else if (keyCodes==='down') {
       this.y+=80;
@@ -58,10 +65,12 @@ Player.prototype.handleInput = function(keyCodes){
    else if (keyCodes==='right') {
       this.x+=89;
    }
+
 }
 
 // This class requires an update(), render() and
 // a handleInput() method.
+
 
 
 
@@ -79,6 +88,7 @@ Player.prototype.handleInput = function(keyCodes){
  var enemy = new Enemy(0, 220 , Math.random() * 256);
  allEnemies.push(enemy);
 console.log(enemy);
+
 
 
 
