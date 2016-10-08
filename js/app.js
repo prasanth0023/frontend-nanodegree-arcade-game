@@ -1,8 +1,8 @@
 // Enemies our player must avoid
-var Enemy = function(x,y,speed) {
-    this.x=x;
-    this.y=y;
-    this.speed=speed;
+var Enemy = function(x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -17,11 +17,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x+=this.speed *dt;
-    if(this.x>505){
-      this.x=0;
-   }
-checkCollisions(this);
+    this.x += this.speed * dt;
+    if (this.x > 505) {
+        this.x = 0;
+    }
+    checkCollisions(this);
 
 };
 
@@ -32,48 +32,38 @@ Enemy.prototype.render = function() {
 };
 
 // Now write your own player class
-var Player = function(x,y,speed){
-    this.x=x;
-    this.y=y;
-    this.speed=speed;
-    this.sprite="images/char-boy.png";
-}
-Player.prototype.update=function(dt){
-   //reset the player when reaching the water
-   if (player.y <= 40) {
+var Player = function(x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.sprite = "images/char-boy.png";
+};
+Player.prototype.update = function(dt) {
+    //reset the player when reaching the water
+    if (player.y <= 40) {
         player.x = 202.5;
         player.y = 383;
         console.log('you made it!');
-     }
-//limit the player movement beyond the walls
-     if (player.x > 402.5) {
-         player.x = 402.5;
-     }
-if (player.x<1){
-   player.x=1;
-}
-if(player.y>400){
-   player.y=400;
-}
+    }
+    //limit the player movement beyond the walls
+    if (player.x > 402.5) {
+        player.x = 402.5;
+    }
+    if (player.x < 1) {
+        player.x = 1;
+    }
+    if (player.y > 400) {
+        player.y = 400;
+    }
 
 
 
 };
 //checking collisions between player and the enemy
-var checkCollisions = function( ) {
+var checkCollisions = function() {
     // check for collision between enemy and player
     if (
-    (player.y + 131 >= allEnemies[0].y + 90
-        && player.x + 25 <= allEnemies[0].x + 88
-        && player.y + 73 <= allEnemies[0].y + 135
-        && player.x + 76 >= allEnemies[0].x + 11)||(player.y + 131 >= allEnemies[1].y + 90
-        && player.x + 25 <= allEnemies[1].x + 88
-        && player.y + 73 <= allEnemies[1].y + 135
-        && player.x + 76 >= allEnemies[1].x + 11)||(player.y + 131 >= allEnemies[2].y + 90
-        && player.x + 25 <= allEnemies[2].x + 88
-        && player.y + 73 <= allEnemies[2].y + 135
-        && player.x + 76 >= allEnemies[2].x + 11)
-    ) {
+        ((player.y + 131 >= allEnemies[0].y + 90) && (player.x + 25 <= allEnemies[0].x + 88) && (player.y + 73 <= allEnemies[0].y + 135) && (player.x + 76 >= allEnemies[0].x + 11)) || ((player.y + 131 >= allEnemies[1].y + 90) && (player.x + 25 <= allEnemies[1].x + 88) && (player.y + 73 <= allEnemies[1].y + 135) && (player.x + 76 >= allEnemies[1].x + 11)) || ((player.y + 131 >= allEnemies[2].y + 90) && (player.x + 25 <= allEnemies[2].x + 88) && (player.y + 73 <= allEnemies[2].y + 135) && (player.x + 76 >= allEnemies[2].x + 11))) {
         console.log('collided');
         player.x = 202.5;
         player.y = 383;
@@ -84,24 +74,20 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 //a handleInput method for player controls
-Player.prototype.handleInput = function(keyCodes){
+Player.prototype.handleInput = function(keyCodes) {
 
-     if (keyCodes==='up'){
-       this.y-=80;
+    if (keyCodes === 'up') {
+        this.y -= 80;
 
-   }
-   else if (keyCodes==='down') {
-      this.y+=80;
-   }
-   else if (keyCodes==='left') {
-      this.x-=89;
-   }
+    } else if (keyCodes === 'down') {
+        this.y += 80;
+    } else if (keyCodes === 'left') {
+        this.x -= 89;
+    } else if (keyCodes === 'right') {
+        this.x += 89;
+    }
 
-   else if (keyCodes==='right') {
-      this.x+=89;
-   }
-
-}
+};
 
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -116,25 +102,18 @@ Player.prototype.handleInput = function(keyCodes){
 
 
 
-
 //creating a new player
- var player =new Player(200,383,50);
- //creating array of enemy objects
- var allEnemies=[ ];
+var player = new Player(200, 383, 50);
+//creating array of enemy objects
+var allEnemies = [];
 
 
 
 //pushing the enemy objects to the allEnemies array
 
- allEnemies.push(new Enemy(0, 220 , Math.random() * 256));
- allEnemies.push(new Enemy(0, 50,Math.random() * 256));
- allEnemies.push(new Enemy(0, 140,Math.random() * 256));
-
-
-
-
-
-
+allEnemies.push(new Enemy(0, 220, Math.random() * 256));
+allEnemies.push(new Enemy(0, 50, Math.random() * 256));
+allEnemies.push(new Enemy(0, 140, Math.random() * 256));
 
 
 
