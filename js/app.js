@@ -21,7 +21,7 @@ Enemy.prototype.update = function(dt) {
     if(this.x>505){
       this.x=0;
    }
-
+checkCollisions(this);
 
 };
 
@@ -54,6 +54,29 @@ if (player.x<1){
 if(player.y>400){
    player.y=400;
 }
+
+
+
+};
+
+var checkCollisions = function( ) {
+    // check for collision between enemy and player
+    if (
+    (player.y + 131 >= allEnemies[0].y + 90
+        && player.x + 25 <= allEnemies[0].x + 88
+        && player.y + 73 <= allEnemies[0].y + 135
+        && player.x + 76 >= allEnemies[0].x + 11)||(player.y + 131 >= allEnemies[1].y + 90
+        && player.x + 25 <= allEnemies[1].x + 88
+        && player.y + 73 <= allEnemies[1].y + 135
+        && player.x + 76 >= allEnemies[1].x + 11)||(player.y + 131 >= allEnemies[2].y + 90
+        && player.x + 25 <= allEnemies[2].x + 88
+        && player.y + 73 <= allEnemies[2].y + 135
+        && player.x + 76 >= allEnemies[2].x + 11)
+    ) {
+        console.log('collided');
+        player.x = 202.5;
+        player.y = 383;
+    }
 
 };
 Player.prototype.render = function() {
@@ -94,13 +117,14 @@ Player.prototype.handleInput = function(keyCodes){
 
 
  var player =new Player(200,383,50);
- var allEnemies=[];
+ var allEnemies=[ ];
+
 
  allEnemies.push(new Enemy(0, 220 , Math.random() * 256));
  allEnemies.push(new Enemy(0, 50,Math.random() * 256));
  allEnemies.push(new Enemy(0, 140,Math.random() * 256));
- allEnemies.push(new Enemy(0, 230,Math.random() * 256));
- 
+
+
 
 
 
