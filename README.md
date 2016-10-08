@@ -18,7 +18,7 @@ git clone https://github.com/prasanth0023/frontend-nanodegree-arcade-game.git
 
 and then open index.html in your browser.
 
- 
+
 
 **Controls:**
 
@@ -26,7 +26,7 @@ and then open index.html in your browser.
 * Move down: down arrow key
 * Move left: left arrow key
 * Move right: right arrow key
-*
+ 
 
 
 Enjoy!
