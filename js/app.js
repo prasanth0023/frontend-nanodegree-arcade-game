@@ -39,12 +39,13 @@ var Player = function(x,y,speed){
     this.sprite="images/char-boy.png";
 }
 Player.prototype.update=function(dt){
+   //reset the player when reaching the water
    if (player.y <= 40) {
         player.x = 202.5;
         player.y = 383;
         console.log('you made it!');
      }
-
+//limit the player movement beyond the walls
      if (player.x > 402.5) {
          player.x = 402.5;
      }
@@ -58,7 +59,7 @@ if(player.y>400){
 
 
 };
-
+//checking collisions between player and the enemy
 var checkCollisions = function( ) {
     // check for collision between enemy and player
     if (
@@ -82,6 +83,7 @@ var checkCollisions = function( ) {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+//a handleInput method for player controls
 Player.prototype.handleInput = function(keyCodes){
 
      if (keyCodes==='up'){
@@ -115,10 +117,14 @@ Player.prototype.handleInput = function(keyCodes){
 
 
 
-
+//creating a new player
  var player =new Player(200,383,50);
+ //creating array of enemy objects
  var allEnemies=[ ];
 
+
+
+//pushing the enemy objects to the allEnemies array
 
  allEnemies.push(new Enemy(0, 220 , Math.random() * 256));
  allEnemies.push(new Enemy(0, 50,Math.random() * 256));
