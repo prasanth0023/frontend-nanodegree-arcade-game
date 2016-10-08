@@ -21,8 +21,8 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 505) {
         this.x = 0;
     }
-    checkCollisions(this);
 
+    this.collide(); //calls the collide method
 };
 
 // Draw the enemy on the screen, required method for game
@@ -30,8 +30,20 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
 };
+//checking collision between player and the bug
+Enemy.prototype.collide = function() {
 
-// Now write your own player class
+
+
+    if ((player.y + 131 >= this.y + 90) && (player.x + 25 <= this.x + 88) && (player.y + 73 <= this.y + 135) && (player.x + 76 >= this.x + 11)) {
+        console.log('collided');
+        player.x = 202.5;
+        player.y = 383;
+    }
+
+};
+
+//   player class
 var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
@@ -40,36 +52,27 @@ var Player = function(x, y, speed) {
 };
 Player.prototype.update = function(dt) {
     //reset the player when reaching the water
-    if (player.y <= 40) {
-        player.x = 202.5;
-        player.y = 383;
+    if (this.y <= 40) {
+        this.x = 202.5;
+        this.y = 383;
         console.log('you made it!');
     }
     //limit the player movement beyond the walls
-    if (player.x > 402.5) {
-        player.x = 402.5;
+    if (this.x > 402.5) {
+        this.x = 402.5;
     }
-    if (player.x < 1) {
-        player.x = 1;
+    if (this.x < 1) {
+        this.x = 1;
     }
-    if (player.y > 400) {
-        player.y = 400;
+    if (this.y > 400) {
+        this.y = 400;
     }
 
 
 
 };
 //checking collisions between player and the enemy
-var checkCollisions = function() {
-    // check for collision between enemy and player
-    if (
-        ((player.y + 131 >= allEnemies[0].y + 90) && (player.x + 25 <= allEnemies[0].x + 88) && (player.y + 73 <= allEnemies[0].y + 135) && (player.x + 76 >= allEnemies[0].x + 11)) || ((player.y + 131 >= allEnemies[1].y + 90) && (player.x + 25 <= allEnemies[1].x + 88) && (player.y + 73 <= allEnemies[1].y + 135) && (player.x + 76 >= allEnemies[1].x + 11)) || ((player.y + 131 >= allEnemies[2].y + 90) && (player.x + 25 <= allEnemies[2].x + 88) && (player.y + 73 <= allEnemies[2].y + 135) && (player.x + 76 >= allEnemies[2].x + 11))) {
-        console.log('collided');
-        player.x = 202.5;
-        player.y = 383;
-    }
 
-};
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
